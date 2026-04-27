@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<title>Talonpojat</title>
+<img src="talonpojat logo.png" width="800">
+<h2>Talonpojat</h2>
+<style>
+       body {
+           background-color: forestgreen
+       }
+</style> 	
+<div style="max-width: 450px; font-family: sans-serif;">
+  <p>Talonpojat on laadukas ja hyvä palvelu, missä on koulutettuja työntekijoitä. Palveluitamme ovat lehtien haravointi, ruohon leikkuu, lumen kolaaminen, ja muita pihatöitä. Toimitusjohtajana toimivat Aapo Laatikainen, ja Arvo Rekolainen. Puhelinnumerot:
+ <a href="tel:0442389250">Aapon,</a> 
+ <a href="tel:0402211480">ja Arvon.</a></p>  
+  <p>Voit lähettää vapaamuotoisen viestin: 
+    <a href="mailto:talonpojatt@gmail.com">talonpojatt@gmail.com</a>
+  </p>
+  <hr>
+
+  <form action="https://formspree.io/mnjlyrqy" method="POST">
+    <label>Palvelu:</label><br>
+    <select name="Palvelu" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+      <option value="ruohonleikkuu">Ruohon leikkuu</option>
+      <option value="lehtienharavointi">Lehtien haravointi</option>
+      <option value="lumenkolaaminen">Lumen kolaaminen</option>
+      <option value="muu">Joku muu, kirjoita lisätietoja kenttään, mikä</option>
+    </select><br>
+
+    <label>Osoite:</label><br>
+    <input type="text" name="Osoite" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+
+    <label>Päivämäärä:</label><br>
+    <input type="date" name="Pvm" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+
+    <label>Kellonaika:</label><br>
+    <input type="time" name="Kello" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+
+    <label>Sähköpostisi:</label><br>
+    <input type="email" name="Email" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+
+    <label>Puhelinnumero:</label><br>
+    <input type="tel" name="Puh" style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+
+    <label>Lisätiedot:</label><br>
+    <textarea name="Viesti" rows="4" style="width: 100%; padding: 8px; margin-bottom: 15px;"></textarea><br>
+
+    <button type="submit" style="width: 100%; padding: 12px; background-color: #2c3e50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      Lähetä tilaus
+    </button>
+  </form>
+</div>
+
+</html>
