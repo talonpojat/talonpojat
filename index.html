@@ -1,54 +1,64 @@
 <!doctype html>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Talonpojat</title>
-<img src="logo.png" width="800">
-<h2>Talonpojat</h2>
-<style>
-       body {
-           background-color: forestgreen
-       }
-</style> 	
-<div style="max-width: 450px; font-family: sans-serif;">
-  <p>Talonpojat on laadukas ja hyvä palvelu, missä on koulutettuja työntekijoitä. Palveluitamme ovat lehtien haravointi, ruohon leikkuu, lumen kolaaminen, ja muita pihatöitä. Toimitusjohtajana toimivat Aapo Laatikainen, ja Arvo Rekolainen. Puhelinnumerot:
- <a href="tel:0442389250">Aapon,</a> 
- <a href="tel:0402211480">ja Arvon.</a></p>  
-  <p>Voit lähettää vapaamuotoisen viestin: 
-    <a href="mailto:talonpojatt@gmail.com">talonpojatt@gmail.com</a>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talonpojat - Pihatyöt</title>
+  <style>
+    body {
+      background-color: #f0f7f0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <img src="logo.png" alt="Talonpojat logo">
+  <h2>Talonpojat</h2>
+  
+  <p>Talonpojat on laadukas ja hyvä palvelu, missä on koulutettuja työntekijöitä. Palveluitamme ovat lehtien haravointi, ruohon leikkuu, lumen kolaaminen ja muut pihatyöt.</p>
+  
+  <p>Toimitusjohtajina toimivat Aapo Laatikainen ja Arvo Rekolainen.</p>
+  
+  <p class="contact-links">
+    Puhelinnumerot: <a href="tel:0442389250">Aapo</a> ja <a href="tel:0402211480">Arvo</a>.
   </p>
+
+  <p>Sähköposti: <a href="mailto:talonpojatt@gmail.com">talonpojatt@gmail.com</a></p>
+  
   <hr>
 
-  <form action="https://formspree.io/mnjlyrqy" method="POST">
-    <label>Palvelu:</label><br>
-    <select name="Palvelu" style="width: 100%; padding: 8px; margin-bottom: 15px;">
+  <h3>Tilaa palvelu</h3>
+  <form action="https://formspree.io" method="POST">
+    <label>Palvelu:</label>
+    <select name="Palvelu">
       <option value="ruohonleikkuu">Ruohon leikkuu</option>
       <option value="lehtienharavointi">Lehtien haravointi</option>
       <option value="lumenkolaaminen">Lumen kolaaminen</option>
-      <option value="muu">Joku muu, kirjoita lisätietoja kenttään, mikä</option>
-    </select><br>
+      <option value="muu">Muu pihatyö (kerro alla)</option>
+    </select>
 
-    <label>Osoite:</label><br>
-    <input type="text" name="Osoite" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+    <label>Osoite:</label>
+    <input type="text" name="Osoite" required placeholder="Esim. Kotikatu 1, Hämeenlinna">
 
-    <label>Päivämäärä:</label><br>
-    <input type="date" name="Pvm" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+    <label>Päivämäärä:</label>
+    <input type="date" name="Pvm" required>
 
-    <label>Kellonaika:</label><br>
-    <input type="time" name="Kello" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+    <label>Kellonaika:</label>
+    <input type="time" name="Kello" required>
 
-    <label>Sähköpostisi:</label><br>
-    <input type="email" name="Email" required style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+    <label>Sähköpostisi:</label>
+    <input type="email" name="Email" required>
 
-    <label>Puhelinnumero:</label><br>
-    <input type="tel" name="Puh" style="width: 100%; padding: 8px; margin-bottom: 15px;"><br>
+    <label>Puhelinnumero:</label>
+    <input type="tel" name="Puh">
 
-    <label>Lisätiedot:</label><br>
-    <textarea name="Viesti" rows="4" style="width: 100%; padding: 8px; margin-bottom: 15px;"></textarea><br>
+    <label>Lisätiedot:</label>
+    <textarea name="Viesti" rows="4" placeholder="Mitä tarkalleen ottaen tarvitset?"></textarea>
 
-    <button type="submit" style="width: 100%; padding: 12px; background-color: #2c3e50; color: white; border: none; border-radius: 5px; cursor: pointer;">
-      Lähetä tilaus
-    </button>
+    <button type="submit">Lähetä tilaus</button>
   </form>
 </div>
 
+</body>
 </html>
