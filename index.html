@@ -1,93 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Talonpojat - Pihatöitä</title>
-  <style>
-    body {
-      background-color: #63e673;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talonpojat - Pihatöitä</title>
+    <style>
+        body {
+            background-color: #63e673;
+            margin: 0;
+            padding: 10px;
+            font-family: sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-sizing: border-box; /* Pitää huolen että padding ei kasvata leveyttä yli 100% */
+        }
+        img {
+            max-width: 100%; /* Kuva ei mene näytön yli */
+            height: auto;
+        }
+        /* Lomakkeen kentät täyttämään koko leveys mobiilissa */
+        input, select, textarea, button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        /* Tehdään taulukosta rullattava sivusuunnassa pienillä näytöillä */
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        .hinta {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-  <img src="logo.png">
-  <h2>Talonpojat</h2>
-  
-  <p>Talonpojat on laadukas ja hyvä palvelu, missä on koulutettuja työntekijöitä. Palveluitamme ovat lehtien haravointi, ruohon leikkuu, lumen kolaaminen ja muut pihatyöt.</p>
-  
-  <p>Toimitusjohtajina toimivat Aapo Laatikainen ja Arvo Rekolainen.</p>
-  
-  <p class="contact-links">
-    Puhelinnumerot: <a href="tel:0442389250">Aapo</a> ja <a href="tel:0402211480">Arvo</a>.
-  </p>
-
-  <p>Sähköposti: <a href="mailto:talonpojatt@gmail.com">talonpojatt@gmail.com</a></p>
-  
-  <hr>
-
-  <h3>Tilaa palvelu</h3>
-  <form action="https://formspree.io/mnjlyrqy" method="POST">
-    <label>Palvelu:</label>
-    <select name="Palvelu">
-      <option value="ruohonleikkuu">Ruohon leikkuu</option>
-      <option value="lehtienharavointi">Lehtien haravointi</option>
-      <option value="lumenkolaaminen">Lumen kolaaminen</option>
-      <option value="muu">Muu pihatyö (kerro alla)</option>
-    </select>
-
-    <label>Osoite:</label>
-    <input type="text" name="Osoite" required placeholder="Esim. Kotikatu 1, Hämeenlinna">
-    <label>Päivämäärä:</label>
-    <input type="date" name="Pvm" required>
-    <label>Kellonaika:</label>
-    <input type="time" name="Kello" required>
-
-    <label>Sähköpostisi:</label>
-    <input type="email" name="Email" required>
-
-    <label>Puhelinnumero:</label>
-    <input type="tel" name="Puh">
-
-    <label>Lisätiedot:</label>
-    <textarea name="Viesti" rows="4" placeholder="Mitä tarkalleen ottaen tarvitset?"></textarea>
-
-    <button type="submit">Lähetä tilaus</button>
+    <img src="logo.png" alt="Logo">
+    <h2>Talonpojat</h2>
+    <p>Talonpojat on laadukas ja hyvä palvelu missä on koulutettuja työntekijöitä. Palveluitamme ovat lehtien haravointi, ruohon leikkuu, lumen kolaaminen ja muut pihatyöt.</p>
+    <p>Toimitusjohtajina toimivat Aapo Laatikainen ja Arvo Rekolainen.</p>
     
-  </form>
-</div>
-    <h2>Palveluhinnasto</h2>
+    <p class="contact-links">
+        Puhelinnumerot: <a href="tel:0442389250">Aapo</a> ja <a href="tel:0402211480">Arvo</a>
+    </p>
+    <p>Sähköposti: <a href="mailto:talonpojatt@gmail.com">talonpojatt@gmail.com</a></p>
+    
+    <hr>
+    
+    <h3>Tilaa palvelu</h3>
+    <form action="https://formspree.io" method="POST">
+        <label>Palvelu</label>
+        <select name="Palvelu">
+            <option value="ruohonleikkuu">Ruohon leikkuu</option>
+            <option value="lehtienharavointi">Lehtien haravointi</option>
+            <option value="lumenkolaaminen">Lumen kolaaminen</option>
+            <option value="muu">Muu pihatyö - kerro alla</option>
+        </select>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Tuote / Palvelu</th>
-                <th>Kuvaus</th>
-                <th class="hinta">Hinta</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Lehtien haravointi</td>
-                <td>Riippuu pihasta</td>
-                <td class="hinta">15-20€</td>
-            </tr>
-            <tr>
-                <td>Ruohon leikkuu</td>
-                <td>Riippuu pihasta</td>
-                <td class="hinta">20-30€</td>
-                </td>
-            </tr>
-            <tr>
-                <td>Lumen kolaaminen</td>
-                <td>Riippuu pihasta</td>
-                <td class="hinta">15-25€</td>
-            </tr>
-        </tbody>
-    </table>
-<p>Hinnoista voi neuvotella lähettämällä sähköpostia <a href="mailto:talonpojatt@gmail.com">tähän osoitteeseen</a>
-<p>Kiitos tuestanne.</p>
+        <label>Osoite</label>
+        <input type="text" name="Osoite" required placeholder="Esim. Kotikatu 1, Hämeenlinna">
+
+        <label>Päivämäärä</label>
+        <input type="date" name="Pvm" required>
+
+        <label>Kellonaika</label>
+        <input type="time" name="Kello" required>
+
+        <label>Sähköpostisi</label>
+        <input type="email" name="Email" required>
+
+        <label>Puhelinnumero</label>
+        <input type="tel" name="Puh">
+
+        <label>Lisätiedot</label>
+        <textarea name="Viesti" rows="4" placeholder="Mitä tarkalleen ottaen tarvitset"></textarea>
+
+        <button type="submit">Lähetä tilaus</button>
+    </form>
+
+    <h2>Palveluhinnasto</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tuote/Palvelu</th>
+                    <th>Kuvaus</th>
+                    <th class="hinta">Hinta (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lehtien haravointi</td>
+                    <td>Riippuu pihasta</td>
+                    <td class="hinta">15-20</td>
+                </tr>
+                <tr>
+                    <td>Ruohon leikkuu</td>
+                    <td>Riippuu pihasta</td>
+                    <td class="hinta">20-30</td>
+                </tr>
+                <tr>
+                    <td>Lumen kolaaminen</td>
+                    <td>Riippuu pihasta</td>
+                    <td class="hinta">15-25</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>Hinnoista voi neuvotella lähettämällä sähköpostia <a href="mailto:talonpojatt@gmail.com">tähän osoitteeseen</a>.</p>
+    <p>Kiitos tuestanne!</p>
+</div>
+
 </body>
 </html>
