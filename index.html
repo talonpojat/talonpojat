@@ -157,8 +157,8 @@
 <script>
     function laskeHinta() {
         const hintaPerM2 = document.getElementById('laskuri-tyo').value;
-        const leveys = document.getElementById('leveys').value;
-        const pituus = document.getElementById('pituus').value;
+	const leveys = parseFloat(document.getElementById('leveys').value);
+	const pituus = parseFloat(document.getElementById('pituus').value);
         const tulosElementti = document.getElementById('tulos');
 
         if (leveys > 0 && pituus > 0) {
