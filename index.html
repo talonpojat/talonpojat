@@ -168,7 +168,7 @@
         if (leveys > 0 && pituus > 0) {
             const pintaAla = leveys * pituus;
             let hinta = pintaAla * hintaPerM2;
-            if (hinta < 15) hinta = 15; // Minimiveloitus
+            if (hinta < 10) hinta = 10; // Minimiveloitus
             tulosElementti.innerHTML = "Arvioitu hinta (" + pintaAla + " m²): " + hinta.toFixed(2) + " €";
         } else {
             tulosElementti.innerHTML = "Arvioitu hinta: 0.00 €";
