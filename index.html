@@ -114,7 +114,7 @@
         <input list="alueet" name="Alue" id="alue-valinta" placeholder="Kirjoita ja valitse alue..." required>
         <datalist id="alueet">
             <option value="Äikäälä">
-            <option value="Käikäälä">
+            <option value="käikälä">
             <option value="Vanaja">
             <option value="Tarvasmäki">
         </datalist>
@@ -147,13 +147,17 @@
 
         <button type="submit">Lähetä tilaus</button>
     </form>
-
+    <h3>Ja vielä vitsejä lopuksi:</h3>
+    <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 20px; text-align: center;">
+        <p id="vitsi-alue" style="font-style: italic; min-height: 1.5em;">Klikkaa alta saadaksesi vitsin!</p>
+        <button type="button" onclick="uusiVitsi()" style="width: auto; padding: 8px 20px; background-color: #555;">Uusi vitsi</button>
+    </div>
+    
     <p>Kiitos tuestanne!</p>
     <p> Seuraa meitä YouTubessa:</p>
     <a href="https://youtube.com/@talonpojatOY"><img src="youtube_logo.png" width="80" alt="YouTube"></a>
 
 </div>
-
 <script>
     function laskeHinta() {
         const hintaPerM2 = document.getElementById('laskuri-tyo').value;
@@ -173,15 +177,33 @@
 
     // Estetään tilauksen lähetys, jos alue on väärä
     document.querySelector('form').onsubmit = function(e) {
-        const sallitutAlueet = ["Äikäälä", "Käikäälä", "Vanaja", "Tarvasmäki"];
+        const sallitutAlueet = ["Äikäälä", "käikälä", "Vanaja", "Tarvasmäki"];
         const valittuAlue = document.getElementById('alue-valinta').value;
         
         if (!sallitutAlueet.includes(valittuAlue)) {
-            alert("Pahoittelut, toimimme tällä hetkellä vain alueilla: Äikäälä, Käikäälä, Vanaja ja Tarvasmäki.");
+            alert("Pahoittelut, toimimme tällä hetkellä vain alueilla: Äikäälä, käikälä, Vanaja ja Tarvasmäki.");
             e.preventDefault();
             return false;
         }
     };
+    const vitsit = [
+        "Kaksi mummoa meni mustikkaan. Toinen ei mahtunut.",
+        "Miksi nakilla ei ole sukkia? Koska ne ovat makkaralla.",
+        "Mitä eroa on mustilla ja vihreillä oliiveilla? Musti on koira.",
+        "Mikä on kirkasta ja haisee pahalle? Kirkan kakka.",
+        "Mitä astronautti sanoi kuussa, kun luuranko tuli vastaan? Mitä kuuluu!",
+        "Mitä orava sanoi aasille? Pistaasipähkinä.",
+        "Mitä Jeesus sanoi, kun sai joululahjaksi sukset? Jee, sukset!",
+        "Mistä tietää, että jääkaapissa on jääteetä? Sen vain ice tea.",
+        "Miltä surulliset joutsenet näyttävät? Kurjilta.",
+        "Mikä on oranssi ja asuu metsässä, mutta ei ole kettu? No onhan se kettu!"
+    ];
+
+    function uusiVitsi() {
+        const randomVitsi = vitsit[Math.floor(Math.random() * vitsit.length)];
+        document.getElementById('vitsi-alue').innerText = randomVitsi;
+    }
+    
 </script>
 
 </body>
