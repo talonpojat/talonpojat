@@ -114,7 +114,7 @@
         <input list="alueet" name="Alue" id="alue-valinta" placeholder="Kirjoita ja valitse alue..." required>
         <datalist id="alueet">
             <option value="Äikäälä">
-            <option value="käikälä">
+            <option value="Käikälä">
             <option value="Vanaja">
             <option value="Tarvasmäki">
         </datalist>
@@ -177,11 +177,11 @@
 
     // Estetään tilauksen lähetys, jos alue on väärä
     document.querySelector('form').onsubmit = function(e) {
-        const sallitutAlueet = ["Äikäälä", "käikälä", "Vanaja", "Tarvasmäki"];
+        const sallitutAlueet = ["Äikäälä", "Käikälä", "Vanaja", "Tarvasmäki"];
         const valittuAlue = document.getElementById('alue-valinta').value;
         
         if (!sallitutAlueet.includes(valittuAlue)) {
-            alert("Pahoittelut, toimimme tällä hetkellä vain alueilla: Äikäälä, käikälä, Vanaja ja Tarvasmäki.");
+            alert("Pahoittelut, toimimme tällä hetkellä vain alueilla: Äikäälä, Käikälä, Vanaja ja Tarvasmäki.");
             e.preventDefault();
             return false;
         }
@@ -203,7 +203,7 @@
         const randomVitsi = vitsit[Math.floor(Math.random() * vitsit.length)];
         document.getElementById('vitsi-alue').innerText = randomVitsi;
     }             
-    
+  window.addEventListener("DOMContentLoaded", laskeHinta);  
 </script>
 
 </body>
