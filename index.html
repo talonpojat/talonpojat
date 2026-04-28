@@ -17,20 +17,34 @@
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-sizing: border-box; /* Pitää huolen että padding ei kasvata leveyttä yli 100% */
-        }
-        img {
-            max-width: 100%; /* Kuva ei mene näytön yli */
-            height: auto;
-        }
-        /* Lomakkeen kentät täyttämään koko leveys mobiilissa */
-        input, select, textarea, button {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
             box-sizing: border-box;
         }
-        /* Tehdään taulukosta rullattava sivusuunnassa pienillä näytöillä */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        input, select, textarea, button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .laskuri-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #2e7d32;
+        }
+        .tulos-ruutu {
+            font-size: 1.2em;
+            color: #2e7d32;
+            font-weight: bold;
+            margin-top: 10px;
+        }
         .table-container {
             overflow-x: auto;
         }
@@ -43,8 +57,15 @@
             padding: 8px;
             border-bottom: 1px solid #ddd;
         }
-        .hinta {
+        button {
+            background-color: #2e7d32;
+            color: white;
             font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #1b5e20;
         }
     </style>
 </head>
@@ -54,81 +75,114 @@
     <img src="logo.png" alt="Logo" width="400">
     
     <h2>Talonpojat</h2>
-    <p>Talonpojat on laadukas ja hyvä palvelu missä on koulutettuja työntekijöitä. Palveluitamme ovat lehtien haravointi, ruohon leikkuu, lumen kolaaminen ja muut pihatyöt.</p>
-    <p>Toimitusjohtajina toimivat Aapo Laatikainen ja Arvo Rekolainen.</p>
+    <p>Laadukasta pihojen hoitoa Hämeenlinnan alueella. Toimialueet ovat Äikäälä, Käikälä, Vanaja, ja Tarvasmäki</p>
+    <p>Toimitusjohtajat: Aapo Laatikainen ja Arvo Rekolainen.</p>
     
-    <p class="contact-links">
-        Puhelinnumerot: <a href="tel:0442389250">Aapo</a> ja <a href="tel:0402211480">Arvo</a>
-    </p>
-    <p>Sähköposti: <a href="mailto:talonpojatt@gmail.com">talonpojatt@gmail.com</a></p>
+    <p>Puhelin: <a href="tel:0442389250">Aapo</a> / <a href="tel:0402211480">Arvo</a><br>
+    Sähköposti: <a href="mailto:talonpojatt@gmail.com">talonpojatt@gmail.com</a></p>
     
     <hr>
-    
+
+    <!-- HINTALASKURI -->
+    <div class="laskuri-box">
+        <h3>Laske hinta-arvio (20x40m esimerkillä)</h3>
+        <label>Valitse työ:</label>
+        <select id="laskuri-tyo" onchange="laskeHinta()">
+            <option value="0.04">Ruohon leikkuu (0.04€/m²)</option>
+            <option value="0.03">Lehtien haravointi (0.03€/m²)</option>
+            <option value="0.05">Lumen kolaaminen (0.05€/m²)</option>
+        </select>
+
+        <div style="display: flex; gap: 10px;">
+            <div style="flex: 1;">
+                <label>Leveys (m):</label>
+                <input type="number" id="leveys" placeholder="20" oninput="laskeHinta()">
+            </div>
+            <div style="flex: 1;">
+                <label>Pituus (m):</label>
+                <input type="number" id="pituus" placeholder="40" oninput="laskeHinta()">
+            </div>
+        </div>
+
+        <div class="tulos-ruutu" id="tulos">Arvioitu hinta: 0.00 €</div>
+    </div>
+
     <h3>Tilaa palvelu</h3>
     <form action="https://formspree.io" method="POST">
+        
+        <label>Valitse alueesi:</label>
+        <input list="alueet" name="Alue" id="alue-valinta" placeholder="Kirjoita ja valitse alue..." required>
+        <datalist id="alueet">
+            <option value="Äikäälä">
+            <option value="Käikäälä">
+            <option value="Vanaja">
+            <option value="Tarvasmäki">
+        </datalist>
+
+        <label>Tarkka osoite</label>
+        <input type="text" name="Osoite" required placeholder="Esim. Kotikatu 1">
+
         <label>Palvelu</label>
         <select name="Palvelu">
             <option value="ruohonleikkuu">Ruohon leikkuu</option>
             <option value="lehtienharavointi">Lehtien haravointi</option>
             <option value="lumenkolaaminen">Lumen kolaaminen</option>
-            <option value="muu">Muu pihatyö - kerro alla</option>
+            <option value="muu">Muu pihatyö</option>
         </select>
 
-        <label>Osoite</label>
-        <input type="text" name="Osoite" required placeholder="Esim. Kotikatu 1, Hämeenlinna">
+        <label>Päivämäärä ja aika</label>
+        <div style="display: flex; gap: 10px;">
+            <input type="date" name="Pvm" required>
+            <input type="time" name="Kello" required>
+        </div>
 
-        <label>Päivämäärä</label>
-        <input type="date" name="Pvm" required>
-
-        <label>Kellonaika</label>
-        <input type="time" name="Kello" required>
-
-        <label>Sähköpostisi</label>
+        <label>Sähköposti</label>
         <input type="email" name="Email" required>
 
         <label>Puhelinnumero</label>
         <input type="tel" name="Puh">
 
-        <label>Lisätiedot</label>
-        <textarea name="Viesti" rows="4" placeholder="Mitä tarkalleen ottaen tarvitset"></textarea>
+        <label>Lisätiedot (esim. pihan koko)</label>
+        <textarea name="Viesti" rows="3" placeholder="Kerro tässä lisää toiveistasi"></textarea>
 
         <button type="submit">Lähetä tilaus</button>
     </form>
 
-    <h2>Palveluhinnasto</h2>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Tuote/Palvelu</th>
-                    <th>Kuvaus</th>
-                    <th class="hinta">Hinta (€)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Lehtien haravointi</td>
-                    <td>Riippuu pihasta</td>
-                    <td class="hinta">15-20</td>
-                </tr>
-                <tr>
-                    <td>Ruohon leikkuu</td>
-                    <td>Riippuu pihasta</td>
-                    <td class="hinta">20-30</td>
-                </tr>
-                <tr>
-                    <td>Lumen kolaaminen</td>
-                    <td>Riippuu pihasta</td>
-                    <td class="hinta">15-25</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <p>Hinnoista voi neuvotella lähettämällä sähköpostia <a href="mailto:talonpojatt@gmail.com">tähän osoitteeseen</a>.</p>
     <p>Kiitos tuestanne!</p>
-    <a href="https://youtube.com/@talonpojatOY"><img src="youtube_logo.png"></a>
-    <p>Seuraa YouTubessa</p>
+    <p> Seuraa meitä YouTubessa:</p>
+    <a href="https://youtube.com"><img src="youtube_logo.png" width="150" alt="YouTube"></a>
+
+</div>
+
+<script>
+    function laskeHinta() {
+        const hintaPerM2 = document.getElementById('laskuri-tyo').value;
+        const leveys = document.getElementById('leveys').value;
+        const pituus = document.getElementById('pituus').value;
+        const tulosElementti = document.getElementById('tulos');
+
+        if (leveys > 0 && pituus > 0) {
+            const pintaAla = leveys * pituus;
+            let hinta = pintaAla * hintaPerM2;
+            if (hinta < 15) hinta = 15; // Minimiveloitus
+            tulosElementti.innerHTML = "Arvioitu hinta (" + pintaAla + " m²): " + hinta.toFixed(2) + " €";
+        } else {
+            tulosElementti.innerHTML = "Arvioitu hinta: 0.00 €";
+        }
+    }
+
+    // Estetään tilauksen lähetys, jos alue on väärä
+    document.querySelector('form').onsubmit = function(e) {
+        const sallitutAlueet = ["Äikäälä", "Käikäälä", "Vanaja", "Tarvasmäki"];
+        const valittuAlue = document.getElementById('alue-valinta').value;
+        
+        if (!sallitutAlueet.includes(valittuAlue)) {
+            alert("Pahoittelut, toimimme tällä hetkellä vain alueilla: Äikäälä, Käikäälä, Vanaja ja Tarvasmäki.");
+            e.preventDefault();
+            return false;
+        }
+    };
+</script>
 
 </body>
 </html>
