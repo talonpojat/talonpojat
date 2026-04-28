@@ -160,7 +160,7 @@
 </div>
 <script>
     function laskeHinta() {
-        const hintaPerM2 = document.getElementById('laskuri-tyo').value;
+        const hintaPerM2 = parseFloat(document.getElementById('laskuri-tyo').value);
 	const leveys = parseFloat(document.getElementById('leveys').value);
 	const pituus = parseFloat(document.getElementById('pituus').value);
         const tulosElementti = document.getElementById('tulos');
