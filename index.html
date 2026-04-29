@@ -172,6 +172,38 @@
     <p>Talonpojat 2026</p>
 </div>
 <script>
+	function hyvaksyEvasteet() {
+	    localStorage.setItem("evasteet", "hyvaksytty");
+	    document.getElementById("cookie-banner").style.display = "none";
+	    lataaAnalytics();
+	}
+
+	function hylkaaEvasteet() {
+	    localStorage.setItem("evasteet", "hylatty");
+	    document.getElementById("cookie-banner").style.display = "none";
+	}
+
+	function lataaAnalytics() {
+	    const script = document.createElement("script");
+	    script.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX";
+	    script.async = true;
+	    document.head.appendChild(script);
+
+	    window.dataLayer = window.dataLayer || [];
+	    function gtag(){dataLayer.push(arguments);}
+	    gtag('js', new Date());
+	    gtag('config', 'G-XXXXXXXXXX');
+	}
+
+	window.onload = function() {
+	    const valinta = localStorage.getItem("evasteet");
+	    if (valinta === "hyvaksytty") {
+	        document.getElementById("cookie-banner").style.display = "none";
+	        lataaAnalytics();
+	    } else if (valinta === "hylatty") {
+	        document.getElementById("cookie-banner").style.display = "none";
+	    }
+	}
     function laskeHinta() {
         const hintaPerM2 = parseFloat(document.getElementById('laskuri-tyo').value);
 	const leveys = parseFloat(document.getElementById('leveys').value);
@@ -228,6 +260,10 @@
     }             
   window.addEventListener("DOMContentLoaded", laskeHinta);  
 </script>
-  
+  <div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#2e7d32;color:white;padding:15px;text-align:center;z-index:1000;">
+      Tämä sivusto käyttää evästeitä kävijäseurantaan.
+      <button onclick="hyvaksyEvasteet()" style="margin-left:10px;">Hyväksy</button>
+      <button onclick="hylkaaEvasteet()" style="margin-left:5px;background:#ccc;color:black;">Kieltäydy</button>
+  </div>
 </body>
 </html>
