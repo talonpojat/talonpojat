@@ -172,20 +172,29 @@
     <p>Talonpojat 2026</p>
 </div>
 <script>
+	function naytaPopup() {
+	    document.getElementById("cookie-popup").style.display = "block";
+	    document.getElementById("cookie-overlay").style.display = "block";
+	}
+
+	function suljePopup() {
+	    document.getElementById("cookie-popup").style.display = "none";
+	    document.getElementById("cookie-overlay").style.display = "none";
+	}
+
 	function hyvaksyEvasteet() {
 	    localStorage.setItem("evasteet", "hyvaksytty");
-	    document.getElementById("cookie-banner").style.display = "none";
+	    suljePopup();
 	    lataaAnalytics();
 	}
 
-	function hylkaaEvasteet() {
-	    localStorage.setItem("evasteet", "hylatty");
-	    document.getElementById("cookie-banner").style.display = "none";
+	function avaaAsetukset() {
+	    alert("Tähän voit myöhemmin lisätä tarkemmat asetukset (esim. analytiikka päälle/pois).");
 	}
 
 	function lataaAnalytics() {
 	    const script = document.createElement("script");
-	    script.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX";
+	    script.src = "https://www.googletagmanager.com/gtag/js?id=G-ZQFT1E6C2Z";
 	    script.async = true;
 	    document.head.appendChild(script);
 
@@ -197,13 +206,13 @@
 
 	window.onload = function() {
 	    const valinta = localStorage.getItem("evasteet");
-	    if (valinta === "hyvaksytty") {
-	        document.getElementById("cookie-banner").style.display = "none";
+
+	    if (!valinta) {
+	        naytaPopup();
+	    } else if (valinta === "hyvaksytty") {
 	        lataaAnalytics();
-	    } else if (valinta === "hylatty") {
-	        document.getElementById("cookie-banner").style.display = "none";
 	    }
-	}
+	};
     function laskeHinta() {
         const hintaPerM2 = parseFloat(document.getElementById('laskuri-tyo').value);
 	const leveys = parseFloat(document.getElementById('leveys').value);
@@ -260,10 +269,19 @@
     }             
   window.addEventListener("DOMContentLoaded", laskeHinta);  
 </script>
-  <div id="cookie-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#2e7d32;color:white;padding:15px;text-align:center;z-index:1000;">
-      Tämä sivusto käyttää evästeitä kävijäseurantaan.
-      <button onclick="hyvaksyEvasteet()" style="margin-left:10px;">Hyväksy</button>
-      <button onclick="hylkaaEvasteet()" style="margin-left:5px;background:#ccc;color:black;">Kieltäydy</button>
-  </div>
+<div id="cookie-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;z-index:999;"></div>
+
+<div id="cookie-popup" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+background:white;padding:20px;border-radius:10px;max-width:400px;width:90%;
+box-shadow:0 0 20px rgba(0,0,0,0.3);display:none;z-index:1000;text-align:center;">
+
+    <h3>Evästeet</h3>
+    <p>Käytämme evästeitä sivuston toiminnan ja kävijäseurannan parantamiseksi.</p>
+
+    <button onclick="hyvaksyEvasteet()">OK</button>
+    <button onclick="avaaAsetukset()" style="background:#ccc;color:black;margin-top:10px;">
+        Asetukset
+    </button>
+</div>
 </body>
 </html>
