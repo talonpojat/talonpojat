@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talonpojat - Peli</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    color: #0f3d14;
+    background: radial-gradient(circle at top, #d7ffd9, #81c784, #2e7d32);
+    overflow-x: hidden;
+}
+
+/* TAUSTA ANIMAATIO */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 60%);
+    animation: moveBg 12s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes moveBg {
+    from { transform: translate(0,0); }
+    to { transform: translate(-10%, -10%); }
+}
+
+/* KORTTI */
+.card {
+    background: rgba(255,255,255,0.92);
+    max-width: 650px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* STATIT */
+.stat {
+    font-size: 18px;
+    margin: 6px 0;
+    font-weight: bold;
+}
+
+/* NAPIT */
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #2e7d32, #66bb6a);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    transition: 0.15s;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* PROGRESS BAR */
+.bar {
+    height: 14px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1b5e20, #66bb6a);
+    transition: width 0.3s;
+}
+
+/* LAATIKOT */
+.box {
+    margin-top: 12px;
+    padding: 14px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+/* PIKKUTEKSTI */
+.small {
+    font-size: 13px;
+    opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🌿 Talonpojat Peli</h1>
+
+<div class="stat">💰 Raha: <span id="money">0</span> €</div>
+<div class="stat">⭐ XP: <span id="xp">0</span></div>
+<div class="stat">🧑 Taso: <span id="level">1</span></div>
+<div class="stat">🤖 Työntekijät: <span id="workers">0</span></div>
+
+<div class="stat">⚡ Stamina</div>
+<div class="bar"><div class="fill" id="staminaBar"></div></div>
+
+<hr>
+
+<h3>🎮 Työt</h3>
+
+<button id="workBtn" onclick="work()">Tee pihatyö</button>
+<div class="small" id="cooldownText"></div>
+
+<hr>
+
+<h3>🗺 Alue</h3>
+<div class="box" id="area">Äikäälä</div>
+
+<hr>
+
+<h3>🏆 Tehtävä</h3>
+<div class="box" id="quest">Tee 5 työtä</div>
+
+<hr>
+
+<h3>🛒 Kauppa</h3>
+<button onclick="buyWorker()">Osta työntekijä (100€)</button>
+
+</div>
+
+<script>
+
+let money = 0;
+let xp = 0;
+let level = 1;
+
+let stamina = 100;
+let cooldown = false;
+
+let workers = 0;
+
+let jobsDone = 0;
+let questTarget = 5;
+
+let areaIndex = 0;
+let areas = ["Äikäälä", "Käikälä", "Vanaja", "Tarvasmäki"];
+
+function update() {
+    document.getElementById("money").innerText = money;
+    document.getElementById("xp").innerText = xp;
+    document.getElementById("level").innerText = level;
+    document.getElementById("workers").innerText = workers;
+
+    document.getElementById("area").innerText = areas[areaIndex];
+    document.getElementById("staminaBar").style.width = stamina + "%";
+
+    document.getElementById("quest").innerText =
+        "Tee " + questTarget + " työtä (" + jobsDone + "/" + questTarget + ")";
+}
+
+function popup(text) {
+    const el = document.createElement("div");
+    el.innerText = text;
+
+    el.style.position = "fixed";
+    el.style.left = (window.innerWidth/2 + (Math.random()*80-40)) + "px";
+    el.style.top = (window.innerHeight/2 + (Math.random()*40-20)) + "px";
+    el.style.fontWeight = "bold";
+    el.style.color = "#1b5e20";
+    el.style.transition = "1s";
+    el.style.pointerEvents = "none";
+
+    document.body.appendChild(el);
+
+    setTimeout(() => {
+        el.style.transform = "translateY(-60px)";
+        el.style.opacity = "0";
+    }, 50);
+
+    setTimeout(() => el.remove(), 1000);
+}
+
+function work() {
+
+    if (cooldown || stamina < 20) return;
+
+    cooldown = true;
+    stamina -= 20;
+
+    let reward = Math.floor(10 + Math.random()*5);
+
+    money += reward;
+    xp += 10;
+    jobsDone++;
+
+    popup("+" + reward + "€");
+
+    document.getElementById("cooldownText").innerText = "Työ käynnissä...";
+
+    setTimeout(() => {
+        cooldown = false;
+        document.getElementById("cooldownText").innerText = "";
+    }, 1500);
+
+    if (jobsDone >= questTarget) {
+        money += 50;
+        xp += 30;
+        jobsDone = 0;
+
+        if (areaIndex < areas.length - 1) {
+            areaIndex++;
+        }
+
+        alert("🏆 Tehtävä valmis! Uusi alue avattu!");
+    }
+
+    levelUp();
+    update();
+    save();
+}
+
+function levelUp() {
+    if (xp >= 100) {
+        xp -= 100;
+        level++;
+        stamina = 100;
+        alert("⭐ Level up! " + level);
+    }
+}
+
+function buyWorker() {
+    if (money >= 100) {
+        money -= 100;
+        workers++;
+        update();
+        save();
+    } else {
+        alert("Ei tarpeeksi rahaa!");
+    }
+}
+
+/* AUTOMAATTINEN RAHATULO */
+setInterval(() => {
+    stamina = Math.min(100, stamina + 5);
+
+    money += workers * 2;
+    xp += workers;
+
+    levelUp();
+    update();
+    save();
+}, 5000);
+
+function save() {
+    localStorage.setItem("talonpojat_pro", JSON.stringify({
+        money, xp, level, stamina, workers, jobsDone, areaIndex
+    }));
+}
+
+function load() {
+    let data = JSON.parse(localStorage.getItem("talonpojat_pro"));
+    if (data) {
+        money = data.money;
+        xp = data.xp;
+        level = data.level;
+        stamina = data.stamina;
+        workers = data.workers;
+        jobsDone = data.jobsDone;
+        areaIndex = data.areaIndex;
+    }
+}
+
+load();
+update();
+
+</script>
+<p>Koodannut Talonpoikien IT-vastaava Aatos Kähkönen.</p>
+</body>
+</html>
