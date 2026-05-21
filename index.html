@@ -4,15 +4,22 @@
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQFT1E6C2Z"></script>
+
 <script>
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
 gtag('js', new Date());
 gtag('config', 'G-ZQFT1E6C2Z');
 </script>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Talonpojat - Pihatöitä</title>
 
@@ -23,70 +30,78 @@ gtag('config', 'G-ZQFT1E6C2Z');
 <link rel="apple-touch-icon" href="icon-192.png">
 
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Talonpojat">
+
+<meta name="apple-mobile-web-app-status-bar-style"
+content="default">
+
+<meta name="apple-mobile-web-app-title"
+content="Talonpojat">
 
 <style>
 
 body {
-    background-color: #63e673;
-    margin: 0;
-    padding: 10px;
-    font-family: sans-serif;
+    background-color:#63e673;
+    margin:0;
+    padding:10px;
+    font-family:sans-serif;
 }
 
 .container {
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-sizing: border-box;
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-sizing:border-box;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+    max-width:100%;
+    height:auto;
 }
 
-input, select, textarea, button {
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-.laskuri-box {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 20px 0;
-    border: 2px solid #2e7d32;
-}
-
-.tulos-ruutu {
-    font-size: 1.2em;
-    color: #2e7d32;
-    font-weight: bold;
-    margin-top: 10px;
+input,
+select,
+textarea,
+button {
+    width:100%;
+    margin-bottom:15px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    box-sizing:border-box;
+    font-size:16px;
 }
 
 button {
-    background-color: #2e7d32;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
+    background-color:#2e7d32;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    border:none;
 }
 
 button:hover {
-    background-color: #1b5e20;
+    background-color:#1b5e20;
+}
+
+.laskuri-box {
+    background:#f9f9f9;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+    border:2px solid #2e7d32;
+}
+
+.tulos-ruutu {
+    font-size:1.2em;
+    color:#2e7d32;
+    font-weight:bold;
+    margin-top:10px;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -108,20 +123,32 @@ Aapo Laatikainen ja Arvo Rekolainen.
 </p>
 
 <p>
+
 Puhelin:
-<a href="tel:0442389250">Aapo</a>
+
+<a href="tel:0442389250">
+Aapo
+</a>
+
 /
-<a href="tel:0402211480">Arvo</a>
+
+<a href="tel:0402211480">
+Arvo
+</a>
 
 <br>
 
 Sähköposti:
+
 <a href="mailto:talonpojatt@gmail.com">
 talonpojatt@gmail.com
 </a>
+
 </p>
 
 <hr>
+
+<!-- HINTALASKURI -->
 
 <div class="laskuri-box">
 
@@ -129,41 +156,48 @@ talonpojatt@gmail.com
 
 <label>Valitse työ:</label>
 
-<select id="laskuri-tyo" onchange="laskeHinta()">
-    <option value="0.04">
-        Ruohon leikkuu (0.04€/m²)
-    </option>
+<select id="laskuri-tyo"
+onchange="laskeHinta()">
 
-    <option value="0.03">
-        Lehtien haravointi (0.03€/m²)
-    </option>
+<option value="0.04">
+Ruohon leikkuu (0.04€/m²)
+</option>
 
-    <option value="0.05">
-        Lumen kolaaminen (0.05€/m²)
-    </option>
+<option value="0.03">
+Lehtien haravointi (0.03€/m²)
+</option>
+
+<option value="0.05">
+Lumen kolaaminen (0.05€/m²)
+</option>
+
 </select>
 
 <div style="display:flex; gap:10px;">
 
-    <div style="flex:1;">
-        <label>Leveys (m):</label>
+<div style="flex:1;">
 
-        <input
-        type="number"
-        id="leveys"
-        placeholder="20"
-        oninput="laskeHinta()">
-    </div>
+<label>Leveys (m):</label>
 
-    <div style="flex:1;">
-        <label>Pituus (m):</label>
+<input
+type="number"
+id="leveys"
+placeholder="20"
+oninput="laskeHinta()">
 
-        <input
-        type="number"
-        id="pituus"
-        placeholder="40"
-        oninput="laskeHinta()">
-    </div>
+</div>
+
+<div style="flex:1;">
+
+<label>Pituus (m):</label>
+
+<input
+type="number"
+id="pituus"
+placeholder="40"
+oninput="laskeHinta()">
+
+</div>
 
 </div>
 
@@ -173,9 +207,12 @@ Arvioitu hinta: 0.00 €
 
 </div>
 
+<!-- TILAUS -->
+
 <h3>Tilaa palvelu</h3>
 
-<form action="https://formspree.io/mnjlyrqy" method="POST">
+<form action="https://formspree.io/mnjlyrqy"
+method="POST">
 
 <label>Valitse alueesi:</label>
 
@@ -187,10 +224,10 @@ placeholder="Kirjoita ja valitse alue..."
 required>
 
 <datalist id="alueet">
-    <option value="Äikäälä">
-    <option value="Käikälä">
-    <option value="Vanaja">
-    <option value="Tarvasmäki">
+<option value="Äikäälä">
+<option value="Käikälä">
+<option value="Vanaja">
+<option value="Tarvasmäki">
 </datalist>
 
 <label>Tarkka osoite</label>
@@ -205,21 +242,21 @@ placeholder="Esim. Kotikatu 1">
 
 <select name="Palvelu">
 
-    <option value="ruohonleikkuu">
-        Ruohon leikkuu
-    </option>
+<option value="ruohonleikkuu">
+Ruohon leikkuu
+</option>
 
-    <option value="lehtienharavointi">
-        Lehtien haravointi
-    </option>
+<option value="lehtienharavointi">
+Lehtien haravointi
+</option>
 
-    <option value="lumenkolaaminen">
-        Lumen kolaaminen
-    </option>
+<option value="lumenkolaaminen">
+Lumen kolaaminen
+</option>
 
-    <option value="muu">
-        Muu pihatyö
-    </option>
+<option value="muu">
+Muu pihatyö
+</option>
 
 </select>
 
@@ -227,9 +264,9 @@ placeholder="Esim. Kotikatu 1">
 
 <div style="display:flex; gap:10px;">
 
-    <input type="date" name="Pvm" required>
+<input type="date" name="Pvm" required>
 
-    <input type="time" name="Kello" required>
+<input type="time" name="Kello" required>
 
 </div>
 
@@ -263,6 +300,58 @@ Lähetä tilaus
 
 </form>
 
+<!-- PELIT -->
+
+<div id="peli-alue" style="
+display:none;
+background:#f9f9f9;
+padding:20px;
+border-radius:10px;
+margin-top:20px;
+border:2px solid #2e7d32;
+text-align:center;
+">
+
+<h2>Pelit</h2>
+
+<p>
+Pelaa Talonpoikien pelejä!
+</p>
+
+<a href="peli.html">
+
+<button style="
+max-width:300px;
+margin:auto;
+">
+Pelaa peliä
+</button>
+
+</a>
+
+</div>
+
+<div id="ei-asennettu" style="
+display:none;
+background:#fff3cd;
+padding:20px;
+border-radius:10px;
+margin-top:20px;
+border:2px solid #ffcc00;
+text-align:center;
+">
+
+<h2>Pelit lukittu</h2>
+
+<p>
+Pelit avautuvat vasta,
+kun Talonpojat-sovellus on asennettu.
+</p>
+
+</div>
+
+<!-- VITSIT -->
+
 <h3>Ja vielä vitsejä lopuksi:</h3>
 
 <div style="
@@ -274,11 +363,14 @@ margin-bottom:20px;
 text-align:center;
 ">
 
-<p id="vitsi-alue" style="
+<p id="vitsi-alue"
+style="
 font-style:italic;
 min-height:1.5em;
 ">
+
 Klikkaa alta saadaksesi vitsin!
+
 </p>
 
 <button
@@ -289,7 +381,9 @@ width:auto;
 padding:8px 20px;
 background-color:#555;
 ">
+
 Uusi vitsi
+
 </button>
 
 </div>
@@ -299,64 +393,16 @@ Uusi vitsi
 <p>Seuraa meitä YouTubessa:</p>
 
 <a href="https://youtube.com/@talonpojatOY">
-<img src="youtube_logo.png" width="81" alt="YouTube">
+
+<img src="youtube_logo.png"
+width="81"
+alt="YouTube">
+
 </a>
 
 <hr>
 
 <p>Talonpojat 2026</p>
-
-</div>
-
-<!-- EVÄSTEET -->
-
-<div id="cookie-overlay" style="
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.5);
-display:none;
-z-index:999;
-"></div>
-
-<div id="cookie-popup" style="
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:20px;
-border-radius:10px;
-max-width:400px;
-width:90%;
-box-shadow:0 0 20px rgba(0,0,0,0.3);
-display:none;
-z-index:1000;
-text-align:center;
-">
-
-<h3>Evästeet</h3>
-
-<p>
-Käytämme evästeitä sivuston toiminnan
-ja kävijäseurannan parantamiseksi.
-</p>
-
-<button onclick="hyvaksyEvasteet()">
-OK
-</button>
-
-<button
-onclick="avaaAsetukset()"
-style="
-background:#ccc;
-color:black;
-margin-top:10px;
-">
-Asetukset
-</button>
 
 </div>
 
@@ -380,11 +426,14 @@ text-align:center;
 
 <p id="ohjeteksti"></p>
 
-<button id="asenna-btn" style="
+<button id="asenna-btn"
+style="
 display:none;
 margin-bottom:10px;
 ">
+
 Asenna sovellus
+
 </button>
 
 <button
@@ -393,35 +442,49 @@ style="
 background:#ccc;
 color:black;
 ">
+
 Sulje
+
 </button>
 
 </div>
 
 <script>
 
+/* HINTALASKURI */
+
 function laskeHinta() {
 
     const hintaPerM2 =
     parseFloat(
-    document.getElementById('laskuri-tyo').value);
+    document.getElementById(
+    'laskuri-tyo').value
+    );
 
     const leveys =
     parseFloat(
-    document.getElementById('leveys').value);
+    document.getElementById(
+    'leveys').value
+    );
 
     const pituus =
     parseFloat(
-    document.getElementById('pituus').value);
+    document.getElementById(
+    'pituus').value
+    );
 
     const tulosElementti =
-    document.getElementById('tulos');
+    document.getElementById(
+    'tulos'
+    );
 
     if (leveys > 0 && pituus > 0) {
 
-        const pintaAla = leveys * pituus;
+        const pintaAla =
+        leveys * pituus;
 
-        let hinta = pintaAla * hintaPerM2;
+        let hinta =
+        pintaAla * hintaPerM2;
 
         if (hinta < 10) {
             hinta = 10;
@@ -441,12 +504,10 @@ function laskeHinta() {
     }
 }
 
-window.addEventListener(
-"DOMContentLoaded",
-laskeHinta
-);
+/* ALUEVALVONTA */
 
-document.querySelector('form').onsubmit = function(e) {
+document.querySelector('form').onsubmit =
+function(e) {
 
     const sallitutAlueet = [
         "Äikäälä",
@@ -459,7 +520,8 @@ document.querySelector('form').onsubmit = function(e) {
     document.getElementById(
     'alue-valinta').value;
 
-    if (!sallitutAlueet.includes(valittuAlue)) {
+    if (!sallitutAlueet.includes(
+        valittuAlue)) {
 
         alert(
         "Toimimme vain alueilla Äikäälä, Käikälä, Vanaja ja Tarvasmäki."
@@ -471,11 +533,11 @@ document.querySelector('form').onsubmit = function(e) {
     }
 };
 
+/* VITSIT */
+
 const vitsit = [
 
 "Kaksi mummoa meni mustikkaan. Toinen ei mahtunut.",
-
-"Miksi nakilla ei ole sukkia? Koska ne ovat makkaralla.",
 
 "Miksi ruohonleikkuri ei tullut töihin? Sillä oli pihanhoitovapaata.",
 
@@ -495,57 +557,6 @@ function uusiVitsi() {
     'vitsi-alue'
     ).innerText = randomVitsi;
 }
-
-/* EVÄSTEET */
-
-function naytaPopup() {
-
-    document.getElementById(
-    "cookie-popup"
-    ).style.display = "block";
-
-    document.getElementById(
-    "cookie-overlay"
-    ).style.display = "block";
-}
-
-function suljePopup() {
-
-    document.getElementById(
-    "cookie-popup"
-    ).style.display = "none";
-
-    document.getElementById(
-    "cookie-overlay"
-    ).style.display = "none";
-}
-
-function hyvaksyEvasteet() {
-
-    localStorage.setItem(
-    "evasteet",
-    "hyvaksytty"
-    );
-
-    suljePopup();
-}
-
-function avaaAsetukset() {
-
-    alert(
-    "Asetukset tulevat myöhemmin."
-    );
-}
-
-window.onload = function() {
-
-    const valinta =
-    localStorage.getItem("evasteet");
-
-    if (!valinta) {
-        naytaPopup();
-    }
-};
 
 /* PWA */
 
@@ -587,9 +598,13 @@ async () => {
     }
 });
 
+/* TARKISTA ASENNUS */
+
 window.addEventListener(
 "DOMContentLoaded",
 () => {
+
+    laskeHinta();
 
     const userAgent =
     navigator.userAgent.toLowerCase();
@@ -601,10 +616,29 @@ window.addEventListener(
     /android/.test(userAgent);
 
     const standalone =
+
     window.matchMedia(
     '(display-mode: standalone)'
     ).matches ||
+
     window.navigator.standalone;
+
+    /* PELIT */
+
+    if (standalone) {
+
+        document.getElementById(
+        "peli-alue"
+        ).style.display = "block";
+
+    } else {
+
+        document.getElementById(
+        "ei-asennettu"
+        ).style.display = "block";
+    }
+
+    /* ASENNUSOHJE */
 
     if (standalone) return;
 
@@ -618,13 +652,51 @@ window.addEventListener(
     } else if (onAndroid) {
 
         viesti =
-        "Voit asentaa Talonpojat-sovelluksen painamalla alla olevaa nappia tai selaimen valikosta 'Asenna sovellus'.";
+        "Samsung-, Honor- ja muilla Android-laitteilla voit asentaa Talonpojat-sovelluksen painamalla tämän laatikon 'Asenna sovellus' -painiketta.";
+
+} else {
+
+    const onChrome =
+    /chrome/.test(userAgent) &&
+    !/edg/.test(userAgent);
+
+    const onEdge =
+    /edg/.test(userAgent);
+
+    const onFirefox =
+    /firefox/.test(userAgent);
+
+    const onSafari =
+    /safari/.test(userAgent) &&
+    !/chrome/.test(userAgent);
+
+    if (onChrome) {
+
+        viesti =
+        "Chromessa voit asentaa Talonpojat-sovelluksen painamalla osoiterivin oikealla puolella näkyvää asennuskuvaketta.";
+
+    } else if (onEdge) {
+
+        viesti =
+        "Microsoft Edgessä voit asentaa Talonpojat-sovelluksen valitsemalla valikosta 'Sovellukset' → 'Asenna tämä sivusto sovelluksena'.";
+
+    } else if (onFirefox) {
+
+        viesti =
+        "Firefox ei tue täydellistä PWA-asennusta, mutta voit lisätä sivun kirjanmerkiksi tai käyttää sitä selaimessa.";
+
+    } else if (onSafari) {
+
+        viesti =
+        "Safari Macilla ei tue täydellistä PWA-asennusta samalla tavalla kuin Chrome, mutta voit lisätä sivun Dockiin valikosta Tiedosto → Lisää Dockiin.";
 
     } else {
 
         viesti =
-        "Tietokoneella voit asentaa Talonpojat-sovelluksen selaimen osoiterivin oikeasta reunasta löytyvästä asennuskuvakkeesta tai selaimen valikosta kohdasta 'Asenna sovellus'.";
+        "Voit asentaa Talonpojat-sovelluksen selaimesi valikosta.";
     }
+}
+
     document.getElementById(
     "ohjeteksti"
     ).innerText = viesti;
