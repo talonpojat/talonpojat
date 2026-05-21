@@ -425,6 +425,15 @@ text-align:center;
 <h3>Asenna Talonpojat-sovellus</h3>
 
 <p id="ohjeteksti"></p>
+<img
+id="ios-share-kuva"
+src="share-ios.png"
+alt="iPhone Jaa-painike"
+style="
+display:none;
+max-width:120px;
+margin:10px auto;
+">
 
 <button id="asenna-btn"
 style="
@@ -647,7 +656,11 @@ window.addEventListener(
     if (onIphone) {
 
         viesti =
-        "Asenna Talonpojat-sovellus painamalla Safarin Jaa-painiketta ja valitsemalla 'Lisää Koti-valikkoon'.";
+        "Asenna Talonpojat-sovellus painamalla alla näkyvää Safarin Jaa-painiketta ja valitsemalla 'Lisää Koti-valikkoon'.";
+
+        document.getElementById(
+        "ios-share-kuva"
+        ).style.display = "block";
 
     } else if (onAndroid) {
 
@@ -688,7 +701,7 @@ window.addEventListener(
     } else if (onSafari) {
 
         viesti =
-        "Safari Macilla ei tue täydellistä PWA-asennusta samalla tavalla kuin Chrome, mutta voit lisätä sivun Dockiin valikosta Tiedosto → Lisää Dockiin.";
+        "Safari Macilla ei tue täydellistä PWA-asennusta samalla tavalla kuin Chrome, mutta voit lisätä sivun Dockiin valikosta Arkisto → Lisää Dockiin.";
 
     } else {
 
