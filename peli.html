@@ -112,7 +112,7 @@ button:active {
 <body>
 
 <div class="card">
-
+<a href="index.html">⬅️ Takaisin pääsivulle</a> 
 <h1>🌿 Talonpojat Peli</h1>
 
 <div class="stat">💰 Raha: <span id="money">0</span> €</div>
@@ -144,6 +144,9 @@ button:active {
 
 <h3>🛒 Kauppa</h3>
 <button onclick="buyWorker()">Osta työntekijä (100€)</button>
+<button onclick="resetGame()" style="background: #b71c1c;">
+Nollaa peli 🔄
+</button>
 
 </div>
 
@@ -291,7 +294,21 @@ function load() {
 
 load();
 update();
+function resetGame() {
+    if (!confirm("Haluatko varmasti nollata pelin?")) return;
 
+    money = 0;
+    xp = 0;
+    level = 1;
+    stamina = 100;
+    workers = 0;
+    jobsDone = 0;
+    areaIndex = 0;
+
+    localStorage.removeItem("talonpojat_pro");
+
+    update();
+}
 </script>
 <p>Koodannut Talonpoikien IT-vastaava Aatos Kähkönen.</p>
 </body>
