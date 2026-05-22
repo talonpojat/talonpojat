@@ -303,7 +303,6 @@ Lähetä tilaus
 <!-- PELIT -->
 
 <div id="peli-alue" style="
-display:none;
 background:#f9f9f9;
 padding:20px;
 border-radius:10px;
@@ -331,24 +330,6 @@ Pelaa peliä
 
 </div>
 
-<div id="ei-asennettu" style="
-display:none;
-background:#fff3cd;
-padding:20px;
-border-radius:10px;
-margin-top:20px;
-border:2px solid #ffcc00;
-text-align:center;
-">
-
-<h2>Pelit lukittu</h2>
-
-<p>
-Pelit avautuvat vasta,
-kun Talonpojat-sovellus on asennettu.
-</p>
-
-</div>
 
 <!-- VITSIT -->
 
@@ -604,9 +585,14 @@ async () => {
         await deferredPrompt.userChoice;
 
         deferredPrompt = null;
+
+    } else {
+
+        alert(
+        "Asennus onnistuu selaimen valikosta kohdasta 'Lisää aloitusnäyttöön'."
+        );
     }
 });
-
 /* TARKISTA ASENNUS */
 
 window.addEventListener(
@@ -640,12 +626,6 @@ window.addEventListener(
         "peli-alue"
         ).style.display = "block";
 
-    } else {
-
-        document.getElementById(
-        "ei-asennettu"
-        ).style.display = "block";
-    }
 
     /* ASENNUSOHJE */
 
@@ -662,11 +642,15 @@ window.addEventListener(
         "ios-share-kuva"
         ).style.display = "block";
 
-    } else if (onAndroid) {
+} else if (onAndroid) {
 
-        viesti =
-        "Samsung-, Honor- ja muilla Android-laitteilla voit asentaa Talonpojat-sovelluksen painamalla tämän laatikon 'Asenna sovellus' -painiketta.";
+    viesti =
+    "Android-laitteilla voit asentaa Talonpojat-sovelluksen painamalla 'Asenna sovellus' -painiketta tai selaimen valikosta 'Lisää aloitusnäyttöön'.";
 
+    document.getElementById(
+    "asenna-btn"
+    ).style.display = "inline-block";
+}
 } else {
 
     const onChrome =
